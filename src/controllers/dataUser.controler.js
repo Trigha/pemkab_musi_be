@@ -35,6 +35,22 @@ class DataUserController {
             .json({ success: false, message: "Internal server error" });
         }
       }
+
+    async updateUser(req, res) {
+      const payload = req.body;
+
+      try {
+        const response = await DataUserService.updateUser(payload)
+
+        res.status(201).json({
+            code: 201,
+            message: 'Successfully Updated',
+            data: response
+        })
+      } catch (error) {
+        res.status(500).json({ error: error.message });
+      }
+    }  
 }
 
 module.exports = new DataUserController();
