@@ -22,7 +22,7 @@ DataHukum.init({
         type: DataTypes.STRING
     },
     tahun: {
-        type: DataTypes.DATE
+        type: DataTypes.STRING
     },
     tmpt_penetapan: {
         type: DataTypes.STRING
