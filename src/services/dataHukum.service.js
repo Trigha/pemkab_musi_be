@@ -36,9 +36,7 @@ class DataHukumService {
         try {
             const inputValue = {
                 id: uuidv4(),
-                tgl_penetapan: moment(data.tgl_penetapan).format('DD-MM-YYYY HH:mm:ss'),
-                tgl_penandatanganan: moment(data.tgl_penandatanganan).format('DD-MM-YYYY HH:mm:ss'),
-                createdAt: moment().format('DD-MM-YYYY HH:mm:ss'),
+                createdAt: moment().format('YYYY-MM-DD HH:mm:ss'),
                 ...data
             }
             return await DataHukumModel.create(inputValue);
@@ -56,9 +54,7 @@ class DataHukumService {
               throw new Error('File not found');
             }
             const inputValue = {
-                tgl_penetapan: moment(data.tgl_penetapan).format('DD-MM-YYYY HH:mm:ss'),
-                tgl_penandatanganan: moment(data.tgl_penandatanganan).format('DD-MM-YYYY HH:mm:ss'),
-                updatedAt: moment().format('DD-MM-YYYY HH HH:mm:ss'),
+                updatedAt: moment().format('YYYY-MM-DD HH:mm:ss'),
                 ...imageData
             }
             await image.update(inputValue);
