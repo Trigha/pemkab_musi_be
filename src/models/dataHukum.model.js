@@ -31,7 +31,7 @@ DataHukum.init({
         type: DataTypes.DATE
     },
     penandatanganan: {
-        type: DataTypes.STRING
+        type: DataTypes.DATE
     },
     tgl_penandatanganan: {
         type: DataTypes.STRING
