@@ -23,7 +23,6 @@ class DataUserController {
         try {
           const { username, password } = req.body;
           const result = await DataUserService.loginUser(username, password);
-    
           if (result.success) {
             res.json({ success: true, id: result.id, token: result.token });
           } else {

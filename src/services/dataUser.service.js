@@ -36,7 +36,7 @@ class DataUserService {
             const token = jwt.sign({ id: existingUser.id }, process.env.JWT_SECRET, {
                 expiresIn: "1h",
               });
-              return { success: true, token };
+              return { success: true, id: existingUser.id, token };
         } catch (error) {
             console.log(error)
             throw new Error('Failed to login');
