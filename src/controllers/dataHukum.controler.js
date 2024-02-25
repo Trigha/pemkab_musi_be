@@ -14,8 +14,8 @@ class DataHukumController {
             }
 
             res.json({
-                ...data.dataValues,
-                file: createLink(data.dataValues.file),
+                ...data,
+                file: createLink(data.file),
             });
         } catch (error) {
             console.log(error)
@@ -83,26 +83,27 @@ class DataHukumController {
         try {
             const { searchBy, search } = req.query;
             const data = await DataHukumService.getDataHukum({ searchBy, search });
+            console.log(data, 'anjing')
             if(data){
                 response = data.map((item) => {
-                    const storedFilePath = item.dataValues.file
-                      .split(decidePlatform())
-                      .pop();
-                    const imageLink = `${req.protocol}://${req.get('host')}/uploads/${storedFilePath}`;
-          
+                    let imageLink = null;
+                    if (item.file) {
+                        const storedFilePath = item.file
+                          .split(decidePlatform())
+                          .pop();
+                        imageLink = `${req.protocol}://${req.get('host')}/uploads/${storedFilePath}`;
+                    }
                     return {
-                      ...item.dataValues,
-                      file: imageLink,
+                        ...item,
+                        file: imageLink,
                     };
-                  });
+                });
             }
-
-            res.send(response)
-
+            res.send(response);
         } catch (error) {
             res.status(500).json({ error: error.message });
         }
-    }
+    }    
 
     async deleteDataHukumById(req, res) {
         const { id } = req.params;
