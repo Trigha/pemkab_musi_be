@@ -38,8 +38,10 @@ class DataUserController {
 
     async updateUser(req, res) {
       const payload = req.body;
-
+      const { id } = req.params;
       try {
+        const existingData = await DataHukumService.getDataHukumById(id)
+            if (!existingData) throw new Error('Not Found Id User');
         const response = await DataUserService.updateUser(payload)
         if(response){
           res.status(201).json({
@@ -47,8 +49,6 @@ class DataUserController {
               message: 'Successfully Updated',
               data: response
           })
-        } else {
-          res.status.json({ success: false, message: 'Failed update user'})
         }
       } catch (error) {
         res.status(500).json({ error: error.message });

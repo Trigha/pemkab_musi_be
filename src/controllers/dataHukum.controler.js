@@ -14,8 +14,8 @@ class DataHukumController {
             }
 
             res.json({
-                ...data,
-                file: createLink(data.file),
+                ...data.dataValues,
+                file: createLink(data.dataValues.file),
             });
         } catch (error) {
             console.log(error)
@@ -83,7 +83,6 @@ class DataHukumController {
         try {
             const { searchBy, search } = req.query;
             const data = await DataHukumService.getDataHukum({ searchBy, search });
-            console.log(data, 'anjing')
             if(data){
                 response = data.map((item) => {
                     let imageLink = null;

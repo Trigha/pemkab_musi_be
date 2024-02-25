@@ -43,13 +43,13 @@ class DataUserService {
         }
     }
 
-    async updateUser(data){
+    async updateUser(id, data){
         try {
             const existingUser = await DataUserModel.findOne({
-                where: { username: data.username }
+                where: { id: id }
             });
             if (!existingUser) {
-                return { success: false, message: "Invalid username" };
+                return { success: false, message: "Invalid id user" };
             }
             const inputValue = {
                 updatedAt: moment().format('YYYY-MM-DD HH:mm:ss'),
