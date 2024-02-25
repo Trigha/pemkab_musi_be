@@ -8,6 +8,7 @@ class DataHukumController {
             const { id } = req.params;
 
             const data = await DataHukumService.getDataHukumById(id);
+            console.log(data, 'anjing')
             let imageLink = null;
             const storedFilePath = data.dataValues.file
                           .split(decidePlatform())
