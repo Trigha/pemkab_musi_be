@@ -8,14 +8,19 @@ class DataHukumController {
             const { id } = req.params;
 
             const data = await DataHukumService.getDataHukumById(id);
-            const createLink = (filePath) => {
-                const storedFilePath = filePath.toString().split(decidePlatform()).pop()
-                return `${req.protocol}://${req.get('host')}/uploads/${storedFilePath}`;
-            }
+            let imageLink = null;
+            const storedFilePath = data.file
+                          .split(decidePlatform())
+                          .pop();
+                        imageLink = `${req.protocol}://${req.get('host')}/uploads/${storedFilePath}`;
+            // const createLink = (filePath) => {
+            //     const storedFilePath = filePath.toString().split(decidePlatform()).pop()
+            //     return `${req.protocol}://${req.get('host')}/uploads/${storedFilePath}`;
+            // }
 
             res.json({
                 ...data.dataValues,
-                file: createLink(data.dataValues.file),
+                file: imageLink,
             });
         } catch (error) {
             console.log(error)
@@ -56,12 +61,12 @@ class DataHukumController {
             const existingData = await DataHukumService.getDataHukumById(id)
             if (!existingData) throw new Error('Not Found');
 
-            if (files) {
-                filePath = files.path;
+            // if (files) {
+            //     filePath = files.path;
         
-                const storedFilePath = existingData.file.split(decidePlatform()).pop();
-                deleteFile(storedFilePath);
-              }
+            //     const storedFilePath = existingData.file.split(decidePlatform()).pop();
+            //     deleteFile(storedFilePath);
+            //   }
            
 
             await DataHukumService.updateDataHukumById(id, {
