@@ -43,7 +43,7 @@ class DataUserController {
           where: { id: id }
       });
             if (!existingUser) throw new Error('Not Found Id User');
-        const response = await DataUserService.updateUser(payload)
+        const response = await DataUserService.updateUser(id, payload)
         if(response){
           res.status(201).json({
               code: 201,
