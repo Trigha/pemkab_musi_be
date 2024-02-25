@@ -41,12 +41,15 @@ class DataUserController {
 
       try {
         const response = await DataUserService.updateUser(payload)
-
-        res.status(201).json({
-            code: 201,
-            message: 'Successfully Updated',
-            data: response
-        })
+        if(response){
+          res.status(201).json({
+              code: 201,
+              message: 'Successfully Updated',
+              data: response
+          })
+        } else {
+          res.status.json({ success: false, message: 'Failed update user'})
+        }
       } catch (error) {
         res.status(500).json({ error: error.message });
       }

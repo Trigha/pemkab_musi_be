@@ -48,6 +48,9 @@ DataHukum.init({
     file: {
         type: DataTypes.STRING
     },
+    note: {
+        type: DataTypes.STRING
+    },
     createdAt: {
         type: DataTypes.DATE
     },
