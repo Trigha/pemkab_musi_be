@@ -9,7 +9,7 @@ class DataHukumController {
 
             const data = await DataHukumService.getDataHukumById(id);
             let imageLink = null;
-            const storedFilePath = data.file
+            const storedFilePath = data.dataValues.file
                           .split(decidePlatform())
                           .pop();
                         imageLink = `${req.protocol}://${req.get('host')}/uploads/${storedFilePath}`;
