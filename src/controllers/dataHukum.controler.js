@@ -8,10 +8,9 @@ class DataHukumController {
             const { id } = req.params;
 
             const data = await DataHukumService.getDataHukumById(id);
-            console.log(data.DataHukum.dataValues.file, 'meki')
-            console.log(data.dataValues.file,'anjing')
+            console.log(data.file, 'meki')
             let imageLink = null;
-            const storedFilePath = data.DataHukum.dataValues.file
+            const storedFilePath = data.file
                           .split(decidePlatform())
                           .pop();
                         imageLink = `${req.protocol}://${req.get('host')}/uploads/${storedFilePath}`;
@@ -21,7 +20,7 @@ class DataHukumController {
             // }
 
             res.json({
-                ...data.DataHukum.dataValues,
+                ...data,
                 file: imageLink,
             });
         } catch (error) {
