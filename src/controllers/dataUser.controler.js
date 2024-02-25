@@ -39,8 +39,10 @@ class DataUserController {
       const payload = req.body;
       const { id } = req.params;
       try {
-        const existingData = await DataHukumService.getDataHukumById(id)
-            if (!existingData) throw new Error('Not Found Id User');
+        const existingUser = await DataUserModel.findOne({
+          where: { id: id }
+      });
+            if (!existingUser) throw new Error('Not Found Id User');
         const response = await DataUserService.updateUser(payload)
         if(response){
           res.status(201).json({
