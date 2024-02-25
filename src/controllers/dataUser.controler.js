@@ -25,7 +25,7 @@ class DataUserController {
           const result = await DataUserService.loginUser(username, password);
     
           if (result.success) {
-            res.json({ success: true, token: result.token });
+            res.json({ success: true, id: result.id, token: result.token });
           } else {
             res.status(401).json({ success: false, message: result.message });
           }
