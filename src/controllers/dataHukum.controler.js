@@ -55,7 +55,6 @@ class DataHukumController {
         const { id } = req.params;
         const payload = req.body;
         const files = req.files;
-        let storedFilePath
 
         let filePath;
         try {
