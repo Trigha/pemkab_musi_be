@@ -62,8 +62,8 @@ class DataHukumController {
             if (!existingData) throw new Error('Not Found');
             let imageLink = null;
     
-            if (files) {
-                const storedFilePath = files[0].path.split(decidePlatform()).pop();
+            if (files && files.file && files.file.length > 0) {
+                const storedFilePath = files.file[0].path.split(decidePlatform()).pop();
                 imageLink = `${req.protocol}://${req.get('host')}/uploads/${storedFilePath}`;
                 console.log(imageLink, 'b')
                 payload.file = imageLink;
