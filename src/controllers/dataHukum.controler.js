@@ -55,7 +55,6 @@ class DataHukumController {
         const { id } = req.params;
         const payload = req.body;
         const files = req.files;
-        console.log(files, 'a')
     
         try {
             const existingData = await DataHukumService.getDataHukumById(id);
@@ -65,7 +64,6 @@ class DataHukumController {
             if (files && files.file && files.file.length > 0) {
                 const storedFilePath = files.file[0].path.split(decidePlatform()).pop();
                 imageLink = `${req.protocol}://${req.get('host')}/uploads/${storedFilePath}`;
-                console.log(imageLink, 'b')
                 payload.file = imageLink;
             }
     
