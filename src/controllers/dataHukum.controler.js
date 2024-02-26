@@ -9,7 +9,7 @@ class DataHukumController {
 
             const data = await DataHukumService.getDataHukumById(id);
             let imageLink = null;
-            const storedFilePath = data.dataValues.file
+            const storedFilePath = data.file
                           .split(decidePlatform())
                           .pop();
                         imageLink = `${req.protocol}://${req.get('host')}/uploads/${storedFilePath}`;
@@ -92,7 +92,7 @@ class DataHukumController {
                 response = data.map((item) => {
                     let imageLink = null;
                     if (item.file) {
-                        const storedFilePath = item.dataValues.file
+                        const storedFilePath = item.file
                           .split(decidePlatform())
                           .pop();
                         imageLink = `${req.protocol}://${req.get('host')}/uploads/${storedFilePath}`;
