@@ -63,9 +63,9 @@ class DataHukumController {
             let imageLink = null;
 
             if (files) {
-                filePath = files.path;
+                // filePath = files.path;
         
-                storedFilePath = existingData.file.split(decidePlatform()).pop();
+                // const storedFilePath = existingData.file.split(decidePlatform()).pop();
                 const storedFilePath = files
                           .split(decidePlatform())
                           .pop();
