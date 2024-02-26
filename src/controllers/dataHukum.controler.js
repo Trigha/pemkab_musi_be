@@ -66,14 +66,16 @@ class DataHukumController {
                 filePath = files.path;
         
                 storedFilePath = existingData.file.split(decidePlatform()).pop();
+                payload.file = files;
                 // deleteFile(storedFilePath);
               }
            
 
-            await DataHukumService.updateDataHukumById(id, {
-                ...payload,
-                file: files
-            });
+            // await DataHukumService.updateDataHukumById(id, {
+            //     ...payload,
+            //     file: files
+            // });
+            await DataHukumService.updateDataHukumById(id, payload);
 
             const updatedData = await DataHukumService.getDataHukumById(id);
 
