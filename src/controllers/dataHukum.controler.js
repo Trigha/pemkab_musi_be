@@ -55,23 +55,24 @@ class DataHukumController {
         const { id } = req.params;
         const payload = req.body;
         const files = req.files;
+        let storedFilePath
 
         let filePath;
         try {
             const existingData = await DataHukumService.getDataHukumById(id)
             if (!existingData) throw new Error('Not Found');
 
-            // if (files) {
-            //     filePath = files.path;
+            if (files) {
+                filePath = files.path;
         
-            //     const storedFilePath = existingData.file.split(decidePlatform()).pop();
-            //     deleteFile(storedFilePath);
-            //   }
+                storedFilePath = existingData.file.split(decidePlatform()).pop();
+                // deleteFile(storedFilePath);
+              }
            
 
             await DataHukumService.updateDataHukumById(id, {
                 ...payload,
-                file: filePath
+                file: files
             });
 
             const updatedData = await DataHukumService.getDataHukumById(id);
