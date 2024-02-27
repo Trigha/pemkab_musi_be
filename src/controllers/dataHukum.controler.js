@@ -86,7 +86,7 @@ class DataHukumController {
             const data = await DataHukumService.getDataHukum({ searchBy, search });
             console.log(data, 'anjing')
             if(data){
-                response = data.map((item) => {
+                response = data.dataValues.map((item) => {
                     let imageLink = null;
                     if (item.dataValues.file) {
                         const storedFilePath = item.dataValues.file
