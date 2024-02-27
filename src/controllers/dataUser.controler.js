@@ -58,8 +58,13 @@ class DataUserController {
 
     async getAllDataUser(req, res){
       try {
-        const data =  await DataUserService.getAllDataUser()
-        res.status(200).send(data);
+        const { count, rows } = await DataUserService.getAllDataUser();
+        const formattedData = rows.map(row => ({
+          id: row.id,
+          username: row.username,
+          createdAt: row.createdAt
+      }));
+      res.status(200).send({ count, data: formattedData });
       } catch (error) {
         console.log(err);
         res.status(500).json({ error: err.message });

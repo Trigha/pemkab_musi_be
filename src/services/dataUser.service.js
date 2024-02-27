@@ -66,7 +66,9 @@ class DataUserService {
 
     async getAllDataUser(){
         try {
-            return await DataUserModel.findAndCountAll();
+            return await DataUserModel.findAndCountAll({
+                attributes: ['id', 'username', 'createdAt']
+            });
         } catch (error) {
             throw new Error(`Failed to get Data User`);
         }
