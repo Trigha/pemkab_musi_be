@@ -54,17 +54,19 @@ class DataHukumController {
     async updateDataHukumById(req, res) {
         const { id } = req.params;
         const payload = req.body;
-        const files = req.files;
-    
+        const files = req.file;
+        let filePath;
+        console.log(files, cek)
         try {
             const existingData = await DataHukumService.getDataHukumById(id);
             if (!existingData) throw new Error('Not Found');
-            let imageLink = null;
     
             if (files) {
+                filePath = files.path;
                 const storedFilePath = existingData.file.split(decidePlatform()).pop();
                 deleteFile(storedFilePath);
-            }
+                payload.file = filePath
+            }   
     
             await DataHukumService.updateDataHukumById(id, payload);
     
