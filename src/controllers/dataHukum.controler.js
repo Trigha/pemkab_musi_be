@@ -56,20 +56,16 @@ class DataHukumController {
         const payload = req.body;
         const files = req.files;
         let filePath;
-        console.log(files, 'cek')
         try {
             const existingData = await DataHukumService.getDataHukumById(id);
-            console.log(existingData, 'cek ini cok')
             if (!existingData) throw new Error('Not Found');
     
             if (files) {
-                filePath = files.path;
-                const storedFilePath = existingData.file.split(decidePlatform()).pop();
+                filePath = files.file[0].path;
+                const storedFilePath = existingData.dataValues.file.split(decidePlatform()).pop();
                 deleteFile(storedFilePath);
                 payload.file = filePath
             }   
-
-            console.log(filePath, 'memek')
     
             await DataHukumService.updateDataHukumById(id, payload);
     
