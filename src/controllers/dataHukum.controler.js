@@ -54,11 +54,12 @@ class DataHukumController {
     async updateDataHukumById(req, res) {
         const { id } = req.params;
         const payload = req.body;
-        const files = req.file;
+        const files = req.files;
         let filePath;
         console.log(files, 'cek')
         try {
             const existingData = await DataHukumService.getDataHukumById(id);
+            console.log(existingData, 'cek ini cok')
             if (!existingData) throw new Error('Not Found');
     
             if (files) {
@@ -67,6 +68,8 @@ class DataHukumController {
                 deleteFile(storedFilePath);
                 payload.file = filePath
             }   
+
+            console.log(filePath, 'memek')
     
             await DataHukumService.updateDataHukumById(id, payload);
     
