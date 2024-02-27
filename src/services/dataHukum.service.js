@@ -12,10 +12,11 @@ class DataHukumService {
                         [Sequelize.Op.like]: `%${search}%`
                     };
                 }
-            const data = await DataHukumModel.findAndCountAll({
-                where: whereCondition
-            });
-            return data;
+                const { count, rows } = await DataHukumModel.findAndCountAll({
+                    where: whereCondition
+                });
+        
+                return { count, data: rows };
         } catch (error) {
             console.log(error)
             throw new Error(`Failed to get Data Hukum`);
