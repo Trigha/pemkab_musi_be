@@ -5,6 +5,7 @@ let hitCount = 0;
 class DataHukumController {
     async getDataHukumById(req, res) {
         try {
+            // hitCount++;
             const { id } = req.params;
 
             const data = await DataHukumService.getDataHukumById(id);
@@ -87,7 +88,7 @@ class DataHukumController {
     async getDataHukum(req, res) {
         let response;
         try {
-            hitCount++;
+            // hitCount++;
             const { searchBy, search } = req.query;
             const data = await DataHukumService.getDataHukum({ searchBy, search });
             if(data.rows){
