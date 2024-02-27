@@ -84,6 +84,7 @@ class DataHukumController {
         try {
             const { searchBy, search } = req.query;
             const data = await DataHukumService.getDataHukum({ searchBy, search });
+            console.log(data, 'anjing')
             if(data){
                 response = data.map((item) => {
                     let imageLink = null;
