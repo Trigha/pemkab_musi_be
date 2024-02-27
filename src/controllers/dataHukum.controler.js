@@ -141,7 +141,7 @@ class DataHukumController {
     }
 
     async getHitCount(req,res) {
-        return hitCount;
+        res.send(hitCount)
     }
 }
 
