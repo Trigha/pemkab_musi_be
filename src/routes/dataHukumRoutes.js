@@ -14,6 +14,8 @@ router.post('/',authMiddleware, upload.fields([
 
 router.get('/all-data', DataHukumController.getDataHukum);
 
+router.get('hit-amount', DataHukumController.getHitCount);
+
 router.get('/:id', DataHukumController.getDataHukumById);
 
 router.put('/:id',authMiddleware,  upload.fields([
