@@ -39,6 +39,11 @@ app.use(function (req, res, next) {
   next();
 });
 
+app.use((req, res, next) => {
+  res.setHeader("Content-Security-Policy", "default-src 'self' http://jdihmusirawasutara.com");
+  next();
+});
+
 app.use('/api/data-hukum', dataHukumRoutes)
 app.use('/api/user', dataUserRoutes)
 

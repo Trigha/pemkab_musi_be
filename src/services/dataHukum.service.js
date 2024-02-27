@@ -12,7 +12,7 @@ class DataHukumService {
                         [Sequelize.Op.like]: `%${search}%`
                     };
                 }
-            const data = await DataHukumModel.findAll({
+            const data = await DataHukumModel.findAndCountAll({
                 where: whereCondition
             });
             return data;

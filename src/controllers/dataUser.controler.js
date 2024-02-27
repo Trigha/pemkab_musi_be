@@ -55,6 +55,16 @@ class DataUserController {
         res.status(500).json({ error: error.message });
       }
     }  
+
+    async getAllDataUser(req, res){
+      try {
+        const data =  await DataUserService.getAllDataUser()
+        res.status(200).send(data);
+      } catch (error) {
+        console.log(err);
+        res.status(500).json({ error: err.message });
+      }
+    }
 }
 
 module.exports = new DataUserController();

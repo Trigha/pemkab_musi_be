@@ -63,6 +63,14 @@ class DataUserService {
             throw new Error('Failed to update data');
         }
     }
+
+    async getAllDataUser(){
+        try {
+            return await DataUserModel.findAndCountAll();
+        } catch (error) {
+            throw new Error(`Failed to get Data User`);
+        }
+    }
 }
 
 module.exports = new DataUserService();

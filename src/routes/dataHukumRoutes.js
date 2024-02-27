@@ -12,9 +12,9 @@ router.post('/',authMiddleware, upload.fields([
     { name: 'file', maxCount: 1 }
 ]), DataHukumController.createDataHukum);
 
-router.get('/all-data',authMiddleware, DataHukumController.getDataHukum);
+router.get('/all-data', DataHukumController.getDataHukum);
 
-router.get('/:id', authMiddleware, DataHukumController.getDataHukumById);
+router.get('/:id', DataHukumController.getDataHukumById);
 
 router.put('/:id',authMiddleware,  upload.fields([
     { name: 'file', maxCount: 1 },

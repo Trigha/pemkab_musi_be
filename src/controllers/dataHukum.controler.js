@@ -61,10 +61,9 @@ class DataHukumController {
             if (!existingData) throw new Error('Not Found');
             let imageLink = null;
     
-            if (files && files.file && files.file.length > 0) {
-                const storedFilePath = files.file[0].path.split(decidePlatform()).pop();
-                imageLink = `${req.protocol}://${req.get('host')}/uploads/${storedFilePath}`;
-                payload.file = imageLink;
+            if (files) {
+                const storedFilePath = existingData.file.split(decidePlatform()).pop();
+                deleteFile(storedFilePath);
             }
     
             await DataHukumService.updateDataHukumById(id, payload);
