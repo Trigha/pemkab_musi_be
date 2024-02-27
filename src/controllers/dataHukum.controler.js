@@ -9,6 +9,7 @@ class DataHukumController {
 
             const data = await DataHukumService.getDataHukumById(id);
             let imageLink = null;
+            if (data && data.dataValues.file) {
             const storedFilePath = data.dataValues.file
                           .split(decidePlatform())
                           .pop();
@@ -17,11 +18,15 @@ class DataHukumController {
             //     const storedFilePath = filePath.toString().split(decidePlatform()).pop()
             //     return `${req.protocol}://${req.get('host')}/uploads/${storedFilePath}`;
             // }
-
-            res.json({
-                ...data.dataValues,
-                file: imageLink,
-            });
+            }
+            if (data) {
+                res.json({
+                    ...data.dataValues,
+                    file: imageLink,
+                });
+            } else {
+                res.status(404).json({ error: 'Data not found' });
+            }
         } catch (error) {
             console.log(error)
             res.status(500).json({ error: error.message });
