@@ -1,7 +1,7 @@
 const { deleteFile } = require('../helper/fileSystem.helper');
 const DataHukumService = require('../services/dataHukum.service');
 const decidePlatform = require('../helper/decidePlatform.helper')
-let hitCount = 0;
+const hitCount = 0;
 class DataHukumController {
     async getDataHukumById(req, res) {
         try {
