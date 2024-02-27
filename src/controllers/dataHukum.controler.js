@@ -19,7 +19,7 @@ class DataHukumController {
             // }
 
             res.json({
-                ...data,
+                ...data.dataValues,
                 file: imageLink,
             });
         } catch (error) {
@@ -94,7 +94,7 @@ class DataHukumController {
                         imageLink = `${req.protocol}://${req.get('host')}/uploads/${storedFilePath}`;
                     }
                     return {
-                        ...item,
+                        ...item.dataValues,
                         file: imageLink,
                     };
                 });
@@ -118,7 +118,7 @@ class DataHukumController {
             if (!data)
                 res.status(404).json({ code: 404, message: 'Not Found!' });
 
-            const storedImagePath = data.file
+            const storedImagePath = data.dataValues.file
                 .split(decidePlatform())
                 .pop();
             deleteFile(storedImagePath);
