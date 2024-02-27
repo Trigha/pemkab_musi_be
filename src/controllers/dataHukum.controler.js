@@ -56,7 +56,7 @@ class DataHukumController {
         const payload = req.body;
         const files = req.file;
         let filePath;
-        console.log(files, cek)
+        console.log(files, 'cek')
         try {
             const existingData = await DataHukumService.getDataHukumById(id);
             if (!existingData) throw new Error('Not Found');
