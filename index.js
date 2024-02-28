@@ -20,12 +20,12 @@ const publicUploadPath = path.join(__dirname, 'public', 'uploads');
 
 app.use(express.json());
 
-app.use(
-  cors({
-    origin: '*',
-    optionsSuccessStatus: 200,
-  })
-);
+// app.use(
+//   cors({
+//     origin: '*',
+//     optionsSuccessStatus: 200,
+//   })
+// );
 
 app.use(function (req, res, next) {
   // let origin = req.headers.origin;
@@ -43,15 +43,6 @@ app.use(function (req, res, next) {
   next();
 });
 
-
-// app.use((req, res, next) => {
-//   // res.setHeader("Content-Security-Policy", "default-src 'self' http://jdihmusirawasutara.com");
-//   res.setHeader(
-//     'Content-Security-Policy-Report-Only',
-//     "default-src 'self'; font-src 'self'; img-src 'self'; script-src 'self'; style-src 'self'; frame-src 'self'"
-//   );
-//   next();
-// });
 
 app.use('/api/data-hukum', dataHukumRoutes)
 app.use('/api/user', dataUserRoutes)
