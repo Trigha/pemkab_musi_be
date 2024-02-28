@@ -36,17 +36,22 @@ app.use(function (req, res, next) {
     'Origin, X-Requested-With, Content-Type, Accept, Authorization'
   );
   res.header('Access-Control-Allow-Credentials', true);
-  res.setHeader(
-    'Content-Security-Policy', "default-src 'self'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self'; frame-src 'self'"
-  );
+  res.header('X-Frame-Options', 'ALLOWALL');
+  // res.setHeader(
+  //   'Content-Security-Policy', "default-src 'self'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self'; frame-src 'self'"
+  // );
   next();
 });
 
 
-// app.use((req, res, next) => {
-//   res.setHeader("Content-Security-Policy", "default-src 'self' http://jdihmusirawasutara.com");
-//   next();
-// });
+app.use((req, res, next) => {
+  // res.setHeader("Content-Security-Policy", "default-src 'self' http://jdihmusirawasutara.com");
+  res.setHeader(
+    'Content-Security-Policy-Report-Only',
+    "default-src 'self'; font-src 'self'; img-src 'self'; script-src 'self'; style-src 'self'; frame-src 'self'"
+  );
+  next();
+});
 
 app.use('/api/data-hukum', dataHukumRoutes)
 app.use('/api/user', dataUserRoutes)
