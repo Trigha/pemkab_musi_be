@@ -37,6 +37,7 @@ app.use(function (req, res, next) {
   );
   res.header('Access-Control-Allow-Credentials', true);
   res.header("Content-Security-Policy", "default-src 'self' http://jdihmusirawasutara.com");
+  res.set("Content-Security-Policy", "default-src 'self'");
   next();
 });
 
