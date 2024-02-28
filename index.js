@@ -36,7 +36,9 @@ app.use(function (req, res, next) {
     'Origin, X-Requested-With, Content-Type, Accept, Authorization'
   );
   res.header('Access-Control-Allow-Credentials', true);
-  res.header('Content-Security-Policy', 'default-src *');
+  res.setHeader(
+    'Content-Security-Policy', "default-src 'self'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self'; frame-src 'self'"
+  );
   next();
 });
 
