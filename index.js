@@ -36,13 +36,14 @@ app.use(function (req, res, next) {
     'Origin, X-Requested-With, Content-Type, Accept, Authorization'
   );
   res.header('Access-Control-Allow-Credentials', true);
+  res.header("Content-Security-Policy", "default-src 'self' http://jdihmusirawasutara.com");
   next();
 });
 
-app.use((req, res, next) => {
-  res.setHeader("Content-Security-Policy", "default-src 'self' http://jdihmusirawasutara.com");
-  next();
-});
+// app.use((req, res, next) => {
+//   res.setHeader("Content-Security-Policy", "default-src 'self' http://jdihmusirawasutara.com");
+//   next();
+// });
 
 app.use('/api/data-hukum', dataHukumRoutes)
 app.use('/api/user', dataUserRoutes)
