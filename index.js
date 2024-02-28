@@ -20,26 +20,27 @@ const publicUploadPath = path.join(__dirname, 'public', 'uploads');
 
 app.use(express.json());
 
-// app.use(
-//   cors({
-//     origin: '*',
-//     optionsSuccessStatus: 200,
-//   })
-// );
+app.use(
+  cors({
+    origin: '*',
+    optionsSuccessStatus: 200,
+  })
+);
 
 app.use(function (req, res, next) {
-  // let origin = req.headers.origin;
-  // res.header('Access-Control-Allow-Origin', '*');
-  // res.header('Access-Control-Allow-Methods', 'GET,HEAD,OPTIONS,POST,PUT');
-  // res.header(
-  //   'Access-Control-Allow-Headers',
-  //   'Origin, X-Requested-With, Content-Type, Accept, Authorization'
-  // );
-  // res.header('Access-Control-Allow-Credentials', true);
-  res.header('X-Frame-Options', 'ALLOW-FROM http://localhost:5173');
+  let origin = req.headers.origin;
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Methods', 'GET,HEAD,OPTIONS,POST,PUT');
+  res.header(
+    'Access-Control-Allow-Headers',
+    'Origin, X-Requested-With, Content-Type, Accept, Authorization'
+  );
+  res.header('Access-Control-Allow-Credentials', true);
+  // res.header('X-Frame-Options', 'ALLOW-FROM http://localhost:5173');
   // res.setHeader(
   //   'Content-Security-Policy', "default-src 'self'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self'; frame-src 'self'"
   // );
+  res.set("Content-Security-Policy", "default-src 'self'");
   next();
 });
 
