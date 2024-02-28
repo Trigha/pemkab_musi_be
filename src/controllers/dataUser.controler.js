@@ -43,6 +43,13 @@ class DataUserController {
           where: { id: id }
       });
             if (!existingUser) throw new Error('Not Found Id User');
+          const existingUserName = await DataUserModel.findOne({
+              where: { username: payload.username }
+          });
+  
+          if (existingUserName) {
+              return res.status(400).json({ error: "Username already exists" });
+          }   
         const response = await DataUserService.updateUser(id, payload)
         if(response){
           res.status(201).json({
