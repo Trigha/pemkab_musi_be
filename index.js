@@ -36,11 +36,7 @@ app.use(function (req, res, next) {
     'Origin, X-Requested-With, Content-Type, Accept, Authorization'
   );
   res.header('Access-Control-Allow-Credentials', true);
-  res.header(
-    "Content-Security-Policy", 
-    "default-src 'self' http://jdihmusirawasutara.com; " +
-    "default-src 'self'"
-  );
+  res.header('Content-Security-Policy', 'default-src *');
   next();
 });
 
