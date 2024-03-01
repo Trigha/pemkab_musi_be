@@ -41,6 +41,10 @@ app.use(function (req, res, next) {
   //   'Content-Security-Policy', "default-src 'self'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self'; frame-src 'self'"
   // );
   // res.set("Content-Security-Policy", "file 'self' http://api.jdihmusirawasutara.com", "default-src 'self'");
+  res.setHeader('X-Frame-Options', 'ALLOW-FROM *');
+    res.setHeader('Content-Security-Policy', "frame-ancestors 'self' *");
+    res.setHeader('X-Content-Type-Options', 'nosniff');
+    res.setHeader('X-XSS-Protection', '1; mode=block');
   next();
 });
 
