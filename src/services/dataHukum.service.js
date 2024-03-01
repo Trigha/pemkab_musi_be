@@ -44,8 +44,7 @@ class DataHukumService {
             console.log(error)
             throw new Error('Failed to create Data Hukum');
         }
-    }
-    
+    } 
 
     async updateDataHukumById(id, imageData) {
         try {

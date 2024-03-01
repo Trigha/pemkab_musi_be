@@ -54,6 +54,16 @@ app.use(helmet.contentSecurityPolicy({
   }
 }))
 
+app.get('/file', (req, res) => {
+  const pdfPath = path.join(__dirname, '',  req.query.path);
+
+  res.setHeader('Content-Type', 'application/pdf');
+  res.setHeader('Content-Disposition', 'inline; filename='+req.query.path);
+
+  // Send the file
+  res.sendFile(pdfPath);
+});
+
 
 app.use('/api/data-hukum', dataHukumRoutes)
 app.use('/api/user', dataUserRoutes)
