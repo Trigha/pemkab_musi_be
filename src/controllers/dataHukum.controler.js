@@ -88,7 +88,9 @@ class DataHukumController {
     async getDataHukum(req, res) {
         let response;
         try {
-            hitCount++;
+            if(req.userId){
+                hitCount++;
+            }
             const { searchBy, search } = req.query;
             const data = await DataHukumService.getDataHukum({ searchBy, search });
             if(data.rows){
