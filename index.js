@@ -1,6 +1,5 @@
 const express = require('express');
 const cors = require('cors');
-const helmet = require('helmet');
 const dotenv = require('dotenv');
 const path = require('path');
 const bodyParser = require('body-parser');
@@ -41,19 +40,9 @@ app.use(function (req, res, next) {
   // res.setHeader(
   //   'Content-Security-Policy', "default-src 'self'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self'; frame-src 'self'"
   // );
-  res.set("Content-Security-Policy", "file 'self' http://api.jdihmusirawasutara.com", "default-src 'self'");
+  // res.set("Content-Security-Policy", "file 'self' http://api.jdihmusirawasutara.com", "default-src 'self'");
   next();
 });
-
-app.use(helmet.contentSecurityPolicy({
-  directives: {
-    defaultSrc: ["'self'"],
-    scriptSrcElem: ["'self'", "'unsafe-inline'"],
-    styleSrc: ["'self'", "'unsafe-inline'"],
-    connectSrc: ["http://api.jdihmusirawasutara.com"],
-    imgSrc: ["'self'", "http://api.jdihmusirawasutara.com"],
-  }
-}))
 
 app.get('/file', (req, res) => {
   const pdfPath = path.join(__dirname, '', req.query.path);
