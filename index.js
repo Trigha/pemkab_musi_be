@@ -54,7 +54,7 @@ app.get('/file', (req, res) => {
 
   // Set the appropriate headers
   res.setHeader('Content-Type', 'application/pdf');
-  res.setHeader('Content-Security-Policy', "frame-ancestors 'self'");
+  res.setHeader('Content-Security-Policy', "frame-ancestors *");
   // Send the file
   const fileStream = fs.createReadStream(pdfPath);
   fileStream.pipe(res);
