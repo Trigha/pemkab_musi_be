@@ -60,7 +60,6 @@ app.get('/file', (req, res) => {
 
   // Check if the file exists
   if (!fs.existsSync(pdfPath)) {
-      console.error('File not found:', pdfPath);
       return res.status(404).send('File not found');
   }
 
