@@ -36,11 +36,11 @@ app.use(function (req, res, next) {
     'Origin, X-Requested-With, Content-Type, Accept, Authorization'
   );
   res.header('Access-Control-Allow-Credentials', true);
-  // res.header('X-Frame-Options', 'ALLOW-FROM http://localhost:5173');
+  res.header('X-Frame-Options', 'ALLOWALL');
   // res.setHeader(
   //   'Content-Security-Policy', "default-src 'self'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self'; frame-src 'self'"
   // );
-  res.set("Content-Security-Policy", "file 'self' http://jdihmusirawasutara.com", "default-src 'self'");
+  res.set("Content-Security-Policy", "file 'self' http://api.jdihmusirawasutara.com", "default-src 'self'");
   next();
 });
 
@@ -49,8 +49,8 @@ app.use(helmet.contentSecurityPolicy({
     defaultSrc: ["'self'"],
     scriptSrcElem: ["'self'", "'unsafe-inline'"],
     styleSrc: ["'self'", "'unsafe-inline'"],
-    connectSrc: ["http://jdihmusirawasutara.com"],
-    imgSrc: ["'self'", "http://jdihmusirawasutara.com"],
+    connectSrc: ["http://api.jdihmusirawasutara.com"],
+    imgSrc: ["'self'", "http://api.jdihmusirawasutara.com"],
   }
 }))
 
