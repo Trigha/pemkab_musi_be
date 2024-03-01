@@ -4,6 +4,7 @@ const helmet = require('helmet');
 const dotenv = require('dotenv');
 const path = require('path');
 const bodyParser = require('body-parser');
+const fs = require('fs')
 
 const dataHukumRoutes = require('./src/routes/dataHukumRoutes');
 const dataUserRoutes = require('./src/routes/dataUserRoutes')
@@ -55,13 +56,20 @@ app.use(helmet.contentSecurityPolicy({
 }))
 
 app.get('/file', (req, res) => {
-  const pdfPath = path.join(__dirname, '',  req.query.path);
+  const pdfPath = path.join(__dirname, '', req.query.path);
 
+  // Check if the file exists
+  if (!fs.existsSync(pdfPath)) {
+      console.error('File not found:', pdfPath);
+      return res.status(404).send('File not found');
+  }
+
+  // Set the appropriate headers
   res.setHeader('Content-Type', 'application/pdf');
-  res.setHeader('Content-Disposition', 'inline; filename='+req.query.path);
 
   // Send the file
-  res.sendFile(pdfPath);
+  const fileStream = fs.createReadStream(pdfPath);
+  fileStream.pipe(res);
 });
 
 

@@ -14,7 +14,7 @@ class DataHukumController {
             const storedFilePath = data.dataValues.file
                           .split(decidePlatform())
                           .pop();
-                        imageLink = `${req.protocol}://${req.get('host')}/uploads/${storedFilePath}`;
+                        imageLink = `${req.protocol}://${req.get('host')}/file?path=${data.dataValues.file}`;
             // const createLink = (filePath) => {
             //     const storedFilePath = filePath.toString().split(decidePlatform()).pop()
             //     return `${req.protocol}://${req.get('host')}/uploads/${storedFilePath}`;
@@ -98,7 +98,7 @@ class DataHukumController {
                         const storedFilePath = item.dataValues.file
                           .split(decidePlatform())
                           .pop();
-                        imageLink = `${req.protocol}://${req.get('host')}/uploads/${storedFilePath}`;
+                        imageLink = `${req.protocol}://${req.get('host')}/file?path=${item.dataValues.file}`;
                     }
                     return {
                         ...item.dataValues,
