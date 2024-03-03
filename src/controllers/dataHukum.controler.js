@@ -82,7 +82,7 @@ class DataHukumController {
                 payload.file = existingData.dataValues.file
             }   
     
-            await DataHukumService.updateDataHukumById(id, payload);
+            await DataHukumService.updateDataHukumById(id, ...payload);
     
             const updatedData = await DataHukumService.getDataHukumById(id);
     
