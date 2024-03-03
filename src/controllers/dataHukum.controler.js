@@ -73,7 +73,7 @@ class DataHukumController {
             const existingData = await DataHukumService.getDataHukumById(id);
             if (!existingData) throw new Error('Not Found');
     
-            if (files) {
+            if (files && files.file) {
                 filePath = files.file[0].path;
                 const storedFilePath = existingData.dataValues.file.split(decidePlatform()).pop();
                 deleteFile(storedFilePath);
