@@ -80,9 +80,9 @@ class DataHukumController {
                 payload.file = filePath
             } else {
                 payload.file = existingData.dataValues.file
-            }   
-    
-            await DataHukumService.updateDataHukumById(id, ...payload);
+            }
+            console.log(payload, 'anjing')
+            await DataHukumService.updateDataHukumById(id, payload);
     
             const updatedData = await DataHukumService.getDataHukumById(id);
     
