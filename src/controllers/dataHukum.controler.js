@@ -78,6 +78,8 @@ class DataHukumController {
                 const storedFilePath = existingData.dataValues.file.split(decidePlatform()).pop();
                 deleteFile(storedFilePath);
                 payload.file = filePath
+            } else {
+                payload.file = existingData.dataValues.file
             }   
     
             await DataHukumService.updateDataHukumById(id, payload);
@@ -100,6 +102,7 @@ class DataHukumController {
             }
             const { searchBy, search } = req.query;
             const data = await DataHukumService.getDataHukum({ searchBy, search });
+            let protocol = req.protocol;
             if(data.rows){
                 response = data.rows.map((item) => {
                     let imageLink = null;
