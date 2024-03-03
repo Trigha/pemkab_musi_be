@@ -12,11 +12,16 @@ class DataHukumController {
 
             const data = await DataHukumService.getDataHukumById(id);
             let imageLink = null;
+            let protocol = req.protocol;
             if (data && data.dataValues.file) {
             const storedFilePath = data.dataValues.file
                           .split(decidePlatform())
                           .pop();
-                        imageLink = `${req.protocol}://${req.get('host')}/file?path=${data.dataValues.file}`;
+                          if (req.headers['x-forwarded-proto'] === 'https' || req.secure) {
+                              protocol = 'https';
+                          }
+                          imageLink = `${protocol}://${req.get('host')}/file?path=${data.dataValues.file}`;
+                          
             // const createLink = (filePath) => {
             //     const storedFilePath = filePath.toString().split(decidePlatform()).pop()
             //     return `${req.protocol}://${req.get('host')}/uploads/${storedFilePath}`;
