@@ -14,7 +14,7 @@ class DataHukumService {
                 }
             const data = await DataHukumModel.findAndCountAll({
                 where: whereCondition,
-                order: [['createdAt', 'ASC']]
+                order: [['createdAt', 'DESC']]
             });
             return data;
         } catch (error) {
