@@ -13,6 +13,7 @@ class DataUserService {
                 createdAt: moment().format('YYYY-MM-DD HH:mm:ss'),
                 ...data
             }
+            inputValue.password = inputValue.password.replace(/[^0-9a-zA-Z]/g, '');
             inputValue.password = await hashPassword(inputValue.password)
             return await DataUserModel.create(inputValue);
         } catch (error) {
@@ -29,7 +30,8 @@ class DataUserService {
             if (!existingUser) {
                 return { success: false, message: "Invalid username or password" };
             }
-            const passwordMatch = await comparePasswords(password, existingUser.password);
+            const removeCase = password.replace(/[^0-9a-zA-Z]/g, '');
+            const passwordMatch = await comparePasswords(removeCase, existingUser.password);
             if (!passwordMatch) {
                 return { success: false, message: "Invalid username or password" };
             }
@@ -55,7 +57,8 @@ class DataUserService {
                 updatedAt: moment().format('YYYY-MM-DD HH:mm:ss'),
                 ...data
             }
-            inputValue.password = await hashPassword(inputValue.password)
+            const removeCase = inputValue.password.replace(/[^0-9a-zA-Z]/g, '');
+            inputValue.password = await hashPassword(removeCase)
             await existingUser.update(inputValue);
             return existingUser;
         } catch (error) {
