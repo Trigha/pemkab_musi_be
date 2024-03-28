@@ -31,7 +31,7 @@ class DataUserController {
         } catch (error) {
           res
             .status(500)
-            .json({ success: false, message: "Internal server error" });
+            .json({ success: false, message: error.message });
         }
       }
 
@@ -74,7 +74,7 @@ class DataUserController {
       res.status(200).send({ count, data: formattedData });
       } catch (error) {
         console.log(err);
-        res.status(500).json({ error: err.message });
+        res.status(500).json({ error: error.message });
       }
     }
 }
