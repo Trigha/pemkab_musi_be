@@ -7,6 +7,7 @@ const fs = require('fs')
 
 const dataHukumRoutes = require('./src/routes/dataHukumRoutes');
 const dataUserRoutes = require('./src/routes/dataUserRoutes')
+const dataArtikelRoutes = require('./src/routes/dataArtikelRoutes')
 
 const errorHandler = require('./src/utils/errorHandler');
 const decidePlatform = require('./src/helper/decidePlatform.helper')
@@ -67,6 +68,7 @@ app.get('/file', (req, res) => {
 
 app.use('/api/data-hukum', dataHukumRoutes)
 app.use('/api/user', dataUserRoutes)
+app.use('/api/data-artikel', dataArtikelRoutes)
 
 app.use(cors()); // Enable CORS middleware
 
