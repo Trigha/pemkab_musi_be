@@ -15,7 +15,7 @@ DataHukum.init({
     deskripsi: {
         type: DataTypes.STRING
     },
-    img: {
+    file: {
         type: DataTypes.STRING
     },
     createdAt: {

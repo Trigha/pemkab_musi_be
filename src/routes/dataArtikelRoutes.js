@@ -9,7 +9,7 @@ const upload = multer({ storage });
 const router = express.Router();
 
 router.post('/',authMiddleware, upload.fields([
-    { name: 'img', maxCount: 1 }
+    { name: 'file', maxCount: 1 }
 ]), DataArtikelController.createDataArtikel);
 
 router.get('/all-data', DataArtikelController.getDataArtikel);
@@ -19,7 +19,7 @@ router.get('/hit-amount', DataArtikelController.getHitCount);
 router.get('/:id', DataArtikelController.getDataArtikelById);
 
 router.put('/:id',authMiddleware,  upload.fields([
-    { name: 'img', maxCount: 1 },
+    { name: 'file', maxCount: 1 },
 ]), DataArtikelController.updateDataArtikelById);
 
 router.delete('/:id',authMiddleware, DataArtikelController.deleteDataArtikelById);
