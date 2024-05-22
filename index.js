@@ -4,6 +4,7 @@ const dotenv = require('dotenv');
 const path = require('path');
 const bodyParser = require('body-parser');
 const fs = require('fs')
+const mime = require('mime-types');
 
 const dataHukumRoutes = require('./src/routes/dataHukumRoutes');
 const dataUserRoutes = require('./src/routes/dataUserRoutes')
@@ -57,8 +58,10 @@ app.get('/file', (req, res) => {
       return res.status(404).send('File not found');
   }
 
+  const mimeType = mime.lookup(filePath);
+
   // Set the appropriate headers
-  res.setHeader('Content-Type', 'application/pdf');
+  res.setHeader('Content-Type', mimeType);
   res.setHeader('Content-Security-Policy', "frame-ancestors https://api.jdihmusirawasutara.com");
   // Send the file
   const fileStream = fs.createReadStream(pdfPath);
