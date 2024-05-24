@@ -58,7 +58,7 @@ app.get('/file', (req, res) => {
       return res.status(404).send('File not found');
   }
 
-  const mimeType = mime.lookup(filePath);
+  const mimeType = mime.lookup(pdfPath);
 
   // Set the appropriate headers
   res.setHeader('Content-Type', mimeType);
