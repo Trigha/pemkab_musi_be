@@ -12,7 +12,7 @@ class DataHukumController {
 
             const data = await DataHukumService.getDataHukumById(id);
             let imageLink = null;
-            let protocol = req.protocol;
+            let protocol = 'https';
             if (data && data.dataValues.file) {
             const storedFilePath = data.dataValues.file
                           .split(decidePlatform())

@@ -12,7 +12,7 @@ class DataArtikelController {
 
             const data = await DataArtikelService.getDataArtikelById(id);
             let imageLink = null;
-            let protocol = req.protocol;
+            let protocol = 'https';
             if (data && data.dataValues.file) {
             const storedFilePath = data.dataValues.file
                           .split(decidePlatform())
